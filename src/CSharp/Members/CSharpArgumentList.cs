@@ -111,10 +111,10 @@ namespace NClass.CSharp
             bool optionalPart = false;
             foreach (var param in declaration)
             {
-                if (param.HasDefaultValue)
+                /*if (param.HasDefaultValue)
                     optionalPart = true;
                 else if (optionalPart)
-                    throw new BadSyntaxException(Strings.ErrorInvalidParameterDeclaration);
+                    throw new BadSyntaxException(Strings.ErrorInvalidParameterDeclaration);*/
 
                 InnerList.Add(new CSharpParameter(param.Name, param.Type, param.Modifier, param.DefaultValue));
             }

@@ -104,6 +104,11 @@ namespace NClass.Core
         /// </exception>
         public Parameter AddParameter(string declaration)
         {
+            // remove attributes
+            if (declaration[0] == '[')
+            {
+                declaration = declaration.Remove(0, declaration.IndexOf(' ') + 1);
+            }
             Parameter parameter = argumentList.Add(declaration);
 
             parameter.Modified += delegate { Changed(); };

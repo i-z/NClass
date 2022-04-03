@@ -47,9 +47,6 @@
     <Reference Include="Microsoft.CodeAnalysis.CSharp, Version=3.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.CodeAnalysis.CSharp.3.2.1\lib\netstandard2.0\Microsoft.CodeAnalysis.CSharp.dll</HintPath>
     </Reference>
-    <Reference Include="NReflect">
-      <HintPath>..\..\libs\NReflect\NReflect\bin\$(Configuration)\NReflect.dll</HintPath>
-    </Reference>
     <Reference Include="nunit.framework, Version=3.12.0.0, Culture=neutral, PublicKeyToken=2638cd05610744eb, processorArchitecture=MSIL">
       <HintPath>..\packages\NUnit.3.12.0\lib\net45\nunit.framework.dll</HintPath>
     </Reference>
@@ -231,6 +228,10 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\NReflect\NReflect\NReflect.csproj">
+      <Project>{760af36d-9463-491d-9fd0-b9c429d8030c}</Project>
+      <Name>NReflect</Name>
+    </ProjectReference>
     <ProjectReference Include="..\AssemblyImport\AssemblyImport.csproj">
       <Project>{88605d35-9e31-47cc-b6a2-45e6381d52b9}</Project>
       <Name>AssemblyImport</Name>

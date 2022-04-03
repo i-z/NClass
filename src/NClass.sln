@@ -5,6 +5,7 @@ VisualStudioVersion = 16.0.30406.217
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GUI", "GUI\GUI.csproj", "{A2918CE1-6894-4FC9-A864-4651769D0274}"
 	ProjectSection(ProjectDependencies) = postProject
+		{760AF36D-9463-491D-9FD0-B9C429D8030C} = {760AF36D-9463-491D-9FD0-B9C429D8030C}
 		{B3B7D798-3D52-47F0-B1A7-A91BC5FE184F} = {B3B7D798-3D52-47F0-B1A7-A91BC5FE184F}
 	EndProjectSection
 EndProject
@@ -34,6 +35,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AssemblyImport.Tests", "AssemblyImport.Tests\AssemblyImport.Tests.csproj", "{8C178134-FD78-42B6-AA06-8372E49C8287}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "Tests\Tests.csproj", "{B3B77F1B-1309-4E44-BE70-E9BAE9F511DB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NReflect", "..\..\NReflect\NReflect\NReflect.csproj", "{760AF36D-9463-491D-9FD0-B9C429D8030C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -170,6 +173,18 @@ Global
 		{B3B77F1B-1309-4E44-BE70-E9BAE9F511DB}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{B3B77F1B-1309-4E44-BE70-E9BAE9F511DB}.Release|x86.ActiveCfg = Release|Any CPU
 		{B3B77F1B-1309-4E44-BE70-E9BAE9F511DB}.Release|x86.Build.0 = Release|Any CPU
+		{760AF36D-9463-491D-9FD0-B9C429D8030C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{760AF36D-9463-491D-9FD0-B9C429D8030C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{760AF36D-9463-491D-9FD0-B9C429D8030C}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{760AF36D-9463-491D-9FD0-B9C429D8030C}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{760AF36D-9463-491D-9FD0-B9C429D8030C}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{760AF36D-9463-491D-9FD0-B9C429D8030C}.Debug|x86.Build.0 = Debug|Any CPU
+		{760AF36D-9463-491D-9FD0-B9C429D8030C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{760AF36D-9463-491D-9FD0-B9C429D8030C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{760AF36D-9463-491D-9FD0-B9C429D8030C}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{760AF36D-9463-491D-9FD0-B9C429D8030C}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{760AF36D-9463-491D-9FD0-B9C429D8030C}.Release|x86.ActiveCfg = Release|Any CPU
+		{760AF36D-9463-491D-9FD0-B9C429D8030C}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

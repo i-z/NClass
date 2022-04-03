@@ -290,10 +290,10 @@ namespace NClass.CSharp
                     throw new BadSyntaxException(string.Format(
                         Strings.ErrorInvalidModifierCombination, "abstract", "virtual"));
                 }
-                if (operation.IsOverride) {
+                /*if (operation.IsOverride) {
                     throw new BadSyntaxException(string.Format(
                         Strings.ErrorInvalidModifierCombination, "override", "virtual"));
-                }
+                }*/
                 if (operation.IsSealed) {
                     throw new BadSyntaxException(string.Format(
                         Strings.ErrorInvalidModifierCombination, "sealed", "virtual"));
@@ -459,6 +459,7 @@ namespace NClass.CSharp
         /// </exception>
         public override string GetValidTypeName(string name)
         {
+            return name;
             Match match = typeRegex.Match(name);
 
             if (match.Success) {

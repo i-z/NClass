@@ -152,8 +152,8 @@ namespace NClass.CSharp
             }
             set
             {
-                if (!value && IsOperator)
-                    throw new BadSyntaxException(Strings.ErrorOperatorMustBeStatic);
+                //if (!value && IsOperator)
+                //    throw new BadSyntaxException(Strings.ErrorOperatorMustBeStatic);
 
                 base.IsStatic = value;
             }
