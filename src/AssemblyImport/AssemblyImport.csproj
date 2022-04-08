@@ -102,7 +102,7 @@
     <Compile Include="UnsafeTypesPresentException.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\NReflect\NReflect\NReflect.csproj">
+    <ProjectReference Include="..\..\libs\NReflect\NReflect\NReflect.csproj">
       <Project>{760af36d-9463-491d-9fd0-b9c429d8030c}</Project>
       <Name>NReflect</Name>
     </ProjectReference>

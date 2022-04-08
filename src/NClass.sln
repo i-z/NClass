@@ -36,7 +36,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AssemblyImport.Tests", "Ass
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "Tests\Tests.csproj", "{B3B77F1B-1309-4E44-BE70-E9BAE9F511DB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NReflect", "..\..\NReflect\NReflect\NReflect.csproj", "{760AF36D-9463-491D-9FD0-B9C429D8030C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NReflect", "..\libs\NReflect\NReflect\NReflect.csproj", "{760AF36D-9463-491D-9FD0-B9C429D8030C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
