@@ -45,27 +45,30 @@ namespace NClass.CSharp
         // <System.String[], System.String[]>
         private const string GenericPattern =
             @"<\s*" + BaseTypePattern + @"(\s*,\s*" + BaseTypePattern + @")*\s*>";
-        
+
         // System.Collections.Generic.List<System.String[], System.String[]>[]
         internal const string GenericTypePattern =
             TypeNamePattern + @"(\s*" + GenericPattern + @")?\??" + ArrayPattern;
-        
+
         // <List<int>[], List<string>>
         private const string GenericPattern2 =
             @"<\s*" + GenericTypePattern + @"(\s*,\s*" + GenericTypePattern + @")*\s*>";
-        
+
+        // System.Collections.Generic.List<List<int>[]>
+        internal const string GenericTypePattern2NonArray =
+            TypeNamePattern + @"(\s*" + GenericPattern2 + @")?\??";
+
         // System.Collections.Generic.List<List<int>[]>[]
         internal const string GenericTypePattern2 =
-            TypeNamePattern + @"(\s*" + GenericPattern2 + @")?\??" + ArrayPattern;
-
+            GenericTypePattern2NonArray + @"(\w|\." + GenericTypePattern2NonArray + @")*" + ArrayPattern;
 
         // Name
         internal const string NamePattern = InitialChar + @"\w*";
-        
+
         // <T, K>
         private const string BaseGenericPattern =
             @"<\s*" + NamePattern + @"(\s*,\s*" + NamePattern + @")*\s*>";
-        
+
         // Name<T>
         internal const string GenericNamePattern =
             NamePattern + @"(\s*" + BaseGenericPattern + ")?";
@@ -85,7 +88,7 @@ namespace NClass.CSharp
 
         // [public | protected internal | internal protected | internal | protected | private]
         internal const string AccessPattern = @"((?<access>public|protected\s+internal|" +
-            @"internal\s+protected|internal|protected|private)\s+)*";
+                                              @"internal\s+protected|internal|protected|private)\s+)*";
 
         // For validating identifier names.
         private const string ClosedNamePattern = @"^\s*(?<name>" + NamePattern + @")\s*$";
@@ -102,20 +105,24 @@ namespace NClass.CSharp
         static Regex genericNameRegex = new Regex(ClosedGenericNamePattern, RegexOptions.ExplicitCapture);
         static Regex typeRegex = new Regex(ClosedTypePattern, RegexOptions.ExplicitCapture);
 
-        static readonly string[] reservedNames = {
-            "abstract", "as", "base", "break", "case", "catch", "checked", "class", 
-            "const", "continue", "default", "delegate", "do", "else", "enum", "event", 
-            "explicit", "extern", "false", "finally", "fixed", "for", "foreach", "goto", 
+        static readonly string[] reservedNames =
+        {
+            "abstract", "as", "base", "break", "case", "catch", "checked", "class",
+            "const", "continue", "default", "delegate", "do", "else", "enum", "event",
+            "explicit", "extern", "false", "finally", "fixed", "for", "foreach", "goto",
             "if", "implicit", "in", "interface", "internal", "is", "lock", "namespace",
             "new", "null", "operator", "out", "override", "params", "private",
             "protected", "public", "readonly", "ref", "return", "sealed", "sizeof",
             "stackalloc", "static", "struct", "switch", "this", "throw", "true", "try",
-            "typeof", "unchecked", "unsafe", "using", "virtual", "volatile", "while"            
+            "typeof", "unchecked", "unsafe", "using", "virtual", "volatile", "while"
         };
-        static readonly string[] typeKeywords = {
+
+        static readonly string[] typeKeywords =
+        {
             "bool", "byte", "char", "decimal", "double", "float", "int", "long",
             "object", "sbyte", "short", "string", "uint", "ulong", "ushort", "void"
         };
+
         static readonly Dictionary<AccessModifier, string> validAccessModifiers;
         static readonly Dictionary<ClassModifier, string> validClassModifiers;
         static readonly Dictionary<FieldModifier, string> validFieldModifiers;
@@ -126,7 +133,8 @@ namespace NClass.CSharp
         static CSharpLanguage()
         {
             // objectClass initialization
-            string[] objectMethods = {
+            string[] objectMethods =
+            {
                 "public static bool Equals(object objA, object objB)",
                 "public virtual bool Equals(object obj)",
                 "public virtual int GetHashCode()",
@@ -266,61 +274,81 @@ namespace NClass.CSharp
 
         private static void ValidateOperationModifiers(Operation operation)
         {
-            if (operation.IsStatic) {
-                if (operation.IsVirtual) {
+            if (operation.IsStatic)
+            {
+                if (operation.IsVirtual)
+                {
                     throw new BadSyntaxException(string.Format(
                         Strings.ErrorInvalidModifierCombination, "virtual", "static"));
                 }
-                if (operation.IsAbstract) {
+
+                if (operation.IsAbstract)
+                {
                     throw new BadSyntaxException(string.Format(
                         Strings.ErrorInvalidModifierCombination, "abstract", "static"));
                 }
-                if (operation.IsOverride) {
+
+                if (operation.IsOverride)
+                {
                     throw new BadSyntaxException(string.Format(
                         Strings.ErrorInvalidModifierCombination, "override", "static"));
                 }
-                if (operation.IsSealed) {
+
+                if (operation.IsSealed)
+                {
                     throw new BadSyntaxException(string.Format(
                         Strings.ErrorInvalidModifierCombination, "sealed", "static"));
                 }
             }
 
-            if (operation.IsVirtual) {
-                if (operation.IsAbstract) {
+            if (operation.IsVirtual)
+            {
+                if (operation.IsAbstract)
+                {
                     throw new BadSyntaxException(string.Format(
                         Strings.ErrorInvalidModifierCombination, "abstract", "virtual"));
                 }
+
                 /*if (operation.IsOverride) {
                     throw new BadSyntaxException(string.Format(
                         Strings.ErrorInvalidModifierCombination, "override", "virtual"));
                 }*/
-                if (operation.IsSealed) {
+                if (operation.IsSealed)
+                {
                     throw new BadSyntaxException(string.Format(
                         Strings.ErrorInvalidModifierCombination, "sealed", "virtual"));
                 }
             }
 
-            if (operation.IsHider) {
-                if (operation.IsOverride) {
+            if (operation.IsHider)
+            {
+                if (operation.IsOverride)
+                {
                     throw new BadSyntaxException(string.Format(
                         Strings.ErrorInvalidModifierCombination, "new", "override"));
                 }
-                if (operation.IsSealed) {
+
+                if (operation.IsSealed)
+                {
                     throw new BadSyntaxException(string.Format(
                         Strings.ErrorInvalidModifierCombination, "new", "sealed"));
                 }
             }
 
-            if (operation.IsSealed) {
-                if (operation.IsAbstract) {
+            if (operation.IsSealed)
+            {
+                if (operation.IsAbstract)
+                {
                     throw new BadSyntaxException(string.Format(
                         Strings.ErrorInvalidModifierCombination, "sealed", "abstract"));
                 }
+
                 if (!operation.IsOverride)
                     operation.IsOverride = true;
             }
 
-            if (operation.IsAbstract) {
+            if (operation.IsAbstract)
+            {
                 ClassType parent = operation.Parent as ClassType;
                 if (parent == null)
                     throw new BadSyntaxException(Strings.ErrorInvalidModifier);
@@ -338,20 +366,28 @@ namespace NClass.CSharp
                     Strings.ErrorInterfaceMemberAccess);
             }
 
-            if (operation.Access == AccessModifier.Private) {
-                if (operation.IsVirtual) {
+            if (operation.Access == AccessModifier.Private)
+            {
+                if (operation.IsVirtual)
+                {
                     throw new BadSyntaxException(string.Format(
                         Strings.ErrorInvalidModifierCombination, "private", "virtual"));
                 }
-                if (operation.IsAbstract) {
+
+                if (operation.IsAbstract)
+                {
                     throw new BadSyntaxException(string.Format(
                         Strings.ErrorInvalidModifierCombination, "private", "abstract"));
                 }
-                if (operation.IsOverride) {
+
+                if (operation.IsOverride)
+                {
                     throw new BadSyntaxException(string.Format(
                         Strings.ErrorInvalidModifierCombination, "private", "override"));
                 }
-                if (operation.IsSealed) {
+
+                if (operation.IsSealed)
+                {
                     throw new BadSyntaxException(string.Format(
                         Strings.ErrorInvalidModifierCombination, "private", "sealed"));
                 }
@@ -363,21 +399,29 @@ namespace NClass.CSharp
         /// </exception>
         protected override void ValidateField(Field field)
         {
-            if (field.IsConstant) {
-                if (field.IsStatic) {
+            if (field.IsConstant)
+            {
+                if (field.IsStatic)
+                {
                     throw new BadSyntaxException(string.Format(
                         Strings.ErrorInvalidModifierCombination, "static", "const"));
                 }
-                if (field.IsReadonly) {
+
+                if (field.IsReadonly)
+                {
                     throw new BadSyntaxException(string.Format(
                         Strings.ErrorInvalidModifierCombination, "readonly", "const"));
                 }
-                if (field.IsVolatile) {
+
+                if (field.IsVolatile)
+                {
                     throw new BadSyntaxException(string.Format(
                         Strings.ErrorInvalidModifierCombination, "volatile", "const"));
                 }
             }
-            if (field.IsReadonly && field.IsVolatile) {
+
+            if (field.IsReadonly && field.IsVolatile)
+            {
                 throw new BadSyntaxException(string.Format(
                     Strings.ErrorInvalidModifierCombination, "volatile", "readonly"));
             }
@@ -404,9 +448,10 @@ namespace NClass.CSharp
             newOperation.ClearModifiers();
             newOperation.IsStatic = false;
 
-            if (explicitly) {
+            if (explicitly)
+            {
                 newOperation.Name = string.Format("{0}.{1}",
-                    ((InterfaceType) operation.Parent).Name, newOperation.Name);
+                    ((InterfaceType)operation.Parent).Name, newOperation.Name);
             }
 
             return newOperation;
@@ -445,13 +490,15 @@ namespace NClass.CSharp
         {
             Match match = (isGenericName ? genericNameRegex.Match(name) : nameRegex.Match(name));
 
-            if (match.Success) {
+            if (match.Success)
+            {
                 string validName = match.Groups["name"].Value;
                 return base.GetValidName(validName, isGenericName);
             }
-            else {
+            else
+            {
                 throw new BadSyntaxException(Strings.ErrorInvalidName);
-            }            
+            }
         }
 
         /// <exception cref="BadSyntaxException">
@@ -462,11 +509,13 @@ namespace NClass.CSharp
             return name;
             Match match = typeRegex.Match(name);
 
-            if (match.Success) {
+            if (match.Success)
+            {
                 string validName = match.Groups["type"].Value;
                 return base.GetValidTypeName(validName);
             }
-            else {
+            else
+            {
                 throw new BadSyntaxException(Strings.ErrorInvalidTypeName);
             }
         }
@@ -489,7 +538,8 @@ namespace NClass.CSharp
 
         public override string GetAccessString(AccessModifier access, bool forCode)
         {
-            switch (access) {
+            switch (access)
+            {
                 case AccessModifier.ProtectedInternal:
                     if (forCode)
                         return "protected internal";
@@ -512,7 +562,8 @@ namespace NClass.CSharp
 
         public override string GetFieldModifierString(FieldModifier modifier, bool forCode)
         {
-            if (modifier == FieldModifier.None) {
+            if (modifier == FieldModifier.None)
+            {
                 if (forCode)
                     return "";
                 else
@@ -541,7 +592,8 @@ namespace NClass.CSharp
 
         public override string GetOperationModifierString(OperationModifier modifier, bool forCode)
         {
-            if (modifier == OperationModifier.None) {
+            if (modifier == OperationModifier.None)
+            {
                 if (forCode)
                     return "";
                 else

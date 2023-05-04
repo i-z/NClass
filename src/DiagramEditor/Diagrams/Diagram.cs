@@ -96,6 +96,7 @@ namespace NClass.DiagramEditor.Diagrams
         private readonly UndoRedoEngine undoRedoEngine;
 
         private int dontRaiseRequestCount = 0;
+
         public bool RaiseChangedEvent
         {
             get => (dontRaiseRequestCount == 0);
@@ -133,6 +134,7 @@ namespace NClass.DiagramEditor.Diagrams
         }
 
         #region Abstract Methods and Properties
+
         public virtual void KeyDown(KeyEventArgs e)
         {
             // Delete
@@ -215,6 +217,7 @@ namespace NClass.DiagramEditor.Diagrams
 
         protected abstract void OnEntityAdded(object sender, EntityEventArgs e);
         protected abstract void OnRelationAdded(object sender, RelationshipEventArgs e);
+
         #endregion
 
         public Model Model => this.model;
@@ -241,6 +244,7 @@ namespace NClass.DiagramEditor.Diagrams
         }
 
         protected Project project;
+
         public Project Project
         {
             get { return project; }
@@ -264,10 +268,7 @@ namespace NClass.DiagramEditor.Diagrams
 
         public Point Offset
         {
-            get
-            {
-                return offset;
-            }
+            get { return offset; }
             set
             {
                 if (value.X < 0) value.X = 0;
@@ -283,10 +284,7 @@ namespace NClass.DiagramEditor.Diagrams
 
         public Size Size
         {
-            get
-            {
-                return size;
-            }
+            get { return size; }
             protected set
             {
                 if (value.Width < DiagramConstants.MinSize.Width)
@@ -304,10 +302,7 @@ namespace NClass.DiagramEditor.Diagrams
 
         public float Zoom
         {
-            get
-            {
-                return zoom;
-            }
+            get { return zoom; }
             set
             {
                 if (value < Canvas.MinZoom) value = Canvas.MinZoom;
@@ -328,10 +323,7 @@ namespace NClass.DiagramEditor.Diagrams
 
         public bool RedrawSuspended
         {
-            get
-            {
-                return redrawSuspended;
-            }
+            get { return redrawSuspended; }
             set
             {
                 if (redrawSuspended != value)
@@ -374,6 +366,7 @@ namespace NClass.DiagramEditor.Diagrams
                 {
                     activeElement.IsActive = false;
                 }
+
                 activeElement = value;
             }
         }
@@ -398,6 +391,7 @@ namespace NClass.DiagramEditor.Diagrams
         public int SelectedShapeCount => selectedShapeCount;
 
         public int SelectedConnectionCount => selectedConnectionCount;
+
         public string GetSelectedElementName()
         {
             if (HasSelectedElement && SelectedElementCount == 1)
@@ -429,6 +423,7 @@ namespace NClass.DiagramEditor.Diagrams
                 if (shape.IsSelected)
                     yield return shape;
             }
+
             foreach (var connection in connections)
             {
                 if (connection.IsSelected)
@@ -444,9 +439,9 @@ namespace NClass.DiagramEditor.Diagrams
                     yield return shape;
 
             foreach (var container in shapes.Except(enumeratedShapes)
-                .Where(s => s is ShapeContainer container && container.IsContainerSelected())
-                .Cast<ShapeContainer>()
-                .OrderBy(s => s.SortOrder))
+                         .Where(s => s is ShapeContainer container && container.IsContainerSelected())
+                         .Cast<ShapeContainer>()
+                         .OrderBy(s => s.SortOrder))
             {
                 foreach (var shape in container.Flatten())
                 {
@@ -458,7 +453,7 @@ namespace NClass.DiagramEditor.Diagrams
             }
 
             foreach (Shape shape in shapes.GetUnselectedElements().Except(enumeratedShapes)
-                .Where(s => !(s is ShapeContainer) && s.ParentShape == null))
+                         .Where(s => !(s is ShapeContainer) && s.ParentShape == null))
             {
                 if (enumeratedShapes.Add(shape))
                 {
@@ -467,10 +462,11 @@ namespace NClass.DiagramEditor.Diagrams
             }
 
             foreach (var container in shapes
-                .Except(enumeratedShapes)
-                .Where(s => s is ShapeContainer container && container.IsTopmostContainer() && !container.IsContainerSelected())
-                .Cast<ShapeContainer>()
-                .OrderBy(s => s.SortOrder))
+                         .Except(enumeratedShapes)
+                         .Where(s => s is ShapeContainer container && container.IsTopmostContainer() &&
+                                     !container.IsContainerSelected())
+                         .Cast<ShapeContainer>()
+                         .OrderBy(s => s.SortOrder))
             {
                 foreach (var shape in container.Flatten().Where(s => !s.IsSelected))
                 {
@@ -490,9 +486,9 @@ namespace NClass.DiagramEditor.Diagrams
                     yield return shape;
 
             foreach (var container in shapes.Except(enumeratedShapes)
-                .Where(s => s is ShapeContainer container && container.IsContainerSelected())
-                .Cast<ShapeContainer>()
-                .OrderByDescending(s => s.SortOrder))
+                         .Where(s => s is ShapeContainer container && container.IsContainerSelected())
+                         .Cast<ShapeContainer>()
+                         .OrderByDescending(s => s.SortOrder))
             {
                 foreach (var shape in container.Flatten())
                 {
@@ -510,7 +506,7 @@ namespace NClass.DiagramEditor.Diagrams
                 yield return connection;
 
             foreach (Shape shape in shapes.GetUnselectedElements().Except(enumeratedShapes)
-                .Where(s => !(s is ShapeContainer) && s.ParentShape == null))
+                         .Where(s => !(s is ShapeContainer) && s.ParentShape == null))
             {
                 if (enumeratedShapes.Add(shape))
                 {
@@ -519,10 +515,11 @@ namespace NClass.DiagramEditor.Diagrams
             }
 
             foreach (var container in shapes
-                .Except(enumeratedShapes)
-                .Where(s => s is ShapeContainer container && container.IsTopmostContainer() && !container.IsContainerSelected())
-                .Cast<ShapeContainer>()
-                .OrderByDescending(s => s.SortOrder))
+                         .Except(enumeratedShapes)
+                         .Where(s => s is ShapeContainer container && container.IsTopmostContainer() &&
+                                     !container.IsContainerSelected())
+                         .Cast<ShapeContainer>()
+                         .OrderByDescending(s => s.SortOrder))
             {
                 foreach (var shape in container.Flatten().Where(s => !s.IsSelected))
                 {
@@ -568,24 +565,24 @@ namespace NClass.DiagramEditor.Diagrams
             }
 
             foreach (var connection in connections.GetUnselectedElementsReversed().Where(c =>
-                enumeratedShapes.Contains(c.StartShape) && enumeratedShapes.Contains(c.EndShape)))
+                         enumeratedShapes.Contains(c.StartShape) && enumeratedShapes.Contains(c.EndShape)))
             {
                 if (enumeratedConnections.Add(connection))
                     yield return connection;
             }
 
             foreach (var connection in connections.GetSelectedElementsReversed().Where(c =>
-                enumeratedShapes.Contains(c.StartShape) && enumeratedShapes.Contains(c.EndShape)))
+                         enumeratedShapes.Contains(c.StartShape) && enumeratedShapes.Contains(c.EndShape)))
             {
                 if (enumeratedConnections.Add(connection))
                     yield return connection;
             }
 
             foreach (var container in shapes.GetReversedList()
-                .Except(enumeratedShapes)
-                .Where(s => s is ShapeContainer container && container.IsContainerSelected())
-                .Cast<ShapeContainer>()
-                .OrderBy(s => s.SortOrder))
+                         .Except(enumeratedShapes)
+                         .Where(s => s is ShapeContainer container && container.IsContainerSelected())
+                         .Cast<ShapeContainer>()
+                         .OrderBy(s => s.SortOrder))
             {
                 foreach (var shape in container.FlattenReverse())
                 {
@@ -602,7 +599,8 @@ namespace NClass.DiagramEditor.Diagrams
             foreach (var connection in connections.GetSelectedElementsReversed().Except(enumeratedConnections))
                 yield return connection;
 
-            foreach (Shape shape in shapes.GetSelectedElementsReversed().Except(enumeratedShapes).Where(s => !(s is ShapeContainer)))
+            foreach (Shape shape in shapes.GetSelectedElementsReversed().Except(enumeratedShapes)
+                         .Where(s => !(s is ShapeContainer)))
                 yield return shape;
         }
 
@@ -634,10 +632,12 @@ namespace NClass.DiagramEditor.Diagrams
             {
                 elements.AddShape(shape);
             }
+
             foreach (var connection in GetSelectedConnections())
             {
                 elements.AddConnection(connection);
             }
+
             Clipboard.Item = elements;
         }
 
@@ -665,6 +665,7 @@ namespace NClass.DiagramEditor.Diagrams
                     element.Draw(graphics, true);
                 element.NeedsRedraw = false;
             }
+
             if (state == State.CreatingShape)
             {
                 g.DrawRectangle(DiagramConstants.SelectionPen,
@@ -684,6 +685,7 @@ namespace NClass.DiagramEditor.Diagrams
                 if (clip.IntersectsWith(shape.GetVisibleArea(Zoom)))
                     shape.DrawSelectionLines(g, Zoom, Offset);
             }
+
             foreach (var connection in connections.GetSelectedElementsReversed())
             {
                 if (clip.IntersectsWith(connection.GetVisibleArea(Zoom)))
@@ -711,7 +713,8 @@ namespace NClass.DiagramEditor.Diagrams
             if (clip.Right > borderWidth || clip.Bottom > borderHeight)
             {
                 DiagramConstants.SelectionPen.DashOffset = Offset.Y - Offset.X;
-                g.DrawLines(DiagramConstants.SelectionPen, new PointF[] {
+                g.DrawLines(DiagramConstants.SelectionPen, new PointF[]
+                {
                     new PointF(borderWidth, 0),
                     new PointF(borderWidth, borderHeight),
                     new PointF(0, borderHeight)
@@ -745,7 +748,7 @@ namespace NClass.DiagramEditor.Diagrams
 
         public void ShowPrintDialog()
         {
-            DiagramPrintDialog dialog = new DiagramPrintDialog {Document = this};
+            DiagramPrintDialog dialog = new DiagramPrintDialog { Document = this };
             dialog.ShowDialog();
         }
 
@@ -758,9 +761,9 @@ namespace NClass.DiagramEditor.Diagrams
         {
             var enumeratedShapes = new HashSet<Shape>();
             foreach (var container in shapes.GetReversedList()
-                .Where(s => s is ShapeContainer container && (!selectedOnly || container.IsSelected))
-                .Cast<ShapeContainer>()
-                .OrderBy(s => s.SortOrder))
+                         .Where(s => s is ShapeContainer container && (!selectedOnly || container.IsSelected))
+                         .Cast<ShapeContainer>()
+                         .OrderBy(s => s.SortOrder))
             {
                 foreach (var shape in container.FlattenReverse())
                 {
@@ -792,6 +795,7 @@ namespace NClass.DiagramEditor.Diagrams
                 if (area.Bottom + Padding > bottomMax)
                     bottomMax = area.Bottom + Padding;
             }
+
             foreach (var connection in connections)
             {
                 Rectangle area = connection.GetLogicalArea();
@@ -815,6 +819,7 @@ namespace NClass.DiagramEditor.Diagrams
                 {
                     left = Math.Min(left, shape.Left);
                 }
+
                 foreach (Shape shape in shapes.GetSelectedElements())
                 {
                     shape.Left = left;
@@ -835,6 +840,7 @@ namespace NClass.DiagramEditor.Diagrams
                 {
                     right = Math.Max(right, shape.Right);
                 }
+
                 foreach (Shape shape in shapes.GetSelectedElements())
                 {
                     shape.Right = right;
@@ -855,6 +861,7 @@ namespace NClass.DiagramEditor.Diagrams
                 {
                     top = Math.Min(top, shape.Top);
                 }
+
                 foreach (Shape shape in shapes.GetSelectedElements())
                 {
                     shape.Top = top;
@@ -875,6 +882,7 @@ namespace NClass.DiagramEditor.Diagrams
                 {
                     bottom = Math.Max(bottom, shape.Bottom);
                 }
+
                 foreach (Shape shape in shapes.GetSelectedElements())
                 {
                     shape.Bottom = bottom;
@@ -895,6 +903,7 @@ namespace NClass.DiagramEditor.Diagrams
                 {
                     center += (shape.Top + shape.Bottom) / 2;
                 }
+
                 center /= SelectedShapeCount;
 
                 foreach (Shape shape in shapes.GetSelectedElements())
@@ -917,6 +926,7 @@ namespace NClass.DiagramEditor.Diagrams
                 {
                     center += (shape.Left + shape.Right) / 2;
                 }
+
                 center /= SelectedShapeCount;
 
                 foreach (Shape shape in shapes.GetSelectedElements())
@@ -939,10 +949,12 @@ namespace NClass.DiagramEditor.Diagrams
                 {
                     maxWidth = Math.Max(maxWidth, shape.Width);
                 }
+
                 foreach (Shape shape in shapes.GetSelectedElements())
                 {
                     shape.Width = maxWidth;
                 }
+
                 RedrawSuspended = false;
             }
         }
@@ -958,6 +970,7 @@ namespace NClass.DiagramEditor.Diagrams
                 {
                     maxHeight = Math.Max(maxHeight, shape.Height);
                 }
+
                 foreach (Shape shape in shapes.GetSelectedElements())
                 {
                     shape.Height = maxHeight;
@@ -979,6 +992,7 @@ namespace NClass.DiagramEditor.Diagrams
                     maxSize.Width = Math.Max(maxSize.Width, shape.Width);
                     maxSize.Height = Math.Max(maxSize.Height, shape.Height);
                 }
+
                 foreach (Shape shape in shapes.GetSelectedElements())
                 {
                     shape.Size = maxSize;
@@ -996,6 +1010,7 @@ namespace NClass.DiagramEditor.Diagrams
                 shape.AutoWidth();
                 shape.AutoHeight();
             }
+
             RedrawSuspended = false;
         }
 
@@ -1006,6 +1021,7 @@ namespace NClass.DiagramEditor.Diagrams
             {
                 shape.AutoWidth();
             }
+
             RedrawSuspended = false;
         }
 
@@ -1016,6 +1032,7 @@ namespace NClass.DiagramEditor.Diagrams
             {
                 shape.AutoHeight();
             }
+
             RedrawSuspended = false;
         }
 
@@ -1033,6 +1050,15 @@ namespace NClass.DiagramEditor.Diagrams
             {
                 if (shape.IsSelected || !selectedOnly)
                     shape.Collapse();
+            }
+
+            if (selectedOnly)
+            {
+                foreach (var connection in connections.Where(connection => connection.IsSelected))
+                {
+                    connection.StartShape.Collapse();
+                    connection.EndShape.Collapse();
+                }
             }
 
             RedrawSuspended = false;
@@ -1054,6 +1080,15 @@ namespace NClass.DiagramEditor.Diagrams
                     shape.Expand();
             }
 
+            if (selectedOnly)
+            {
+                foreach (var connection in connections.Where(connection => connection.IsSelected))
+                {
+                    connection.StartShape.Expand();
+                    connection.EndShape.Expand();
+                }
+            }
+
             RedrawSuspended = false;
         }
 
@@ -1066,6 +1101,7 @@ namespace NClass.DiagramEditor.Diagrams
             {
                 shape.IsSelected = true;
             }
+
             foreach (var connection in connections)
             {
                 connection.IsSelected = true;
@@ -1107,7 +1143,7 @@ namespace NClass.DiagramEditor.Diagrams
                        || toBeRemovedShapes.Contains(c.StartShape)
                        || toBeRemovedShapes.Contains(c.EndShape);
             }
-            
+
             if (!HasSelectedElement || (showConfirmation && !ConfirmDelete())) return;
 
             if (selectedShapeCount > 0)
@@ -1116,7 +1152,7 @@ namespace NClass.DiagramEditor.Diagrams
             }
 
             toBeRemovedConnections.AddRange(connections.GetModifiableList().Where(ShouldRemoveConnection));
-            
+
             var command = new DeleteElementsCommand(toBeRemovedShapes, toBeRemovedConnections, this);
             command.Execute();
             TrackCommand(command);
@@ -1140,6 +1176,7 @@ namespace NClass.DiagramEditor.Diagrams
                     return;
                 }
             }
+
             foreach (var connection in connections)
             {
                 if (connection.NeedsRedraw)
@@ -1155,6 +1192,7 @@ namespace NClass.DiagramEditor.Diagrams
             diagramDynamicMenu.SetReference(this);
             return diagramDynamicMenu;
         }
+
         public ContextMenuStrip GetContextMenu(AbsoluteMouseEventArgs e)
         {
             if (HasSelectedElement)
@@ -1166,6 +1204,7 @@ namespace NClass.DiagramEditor.Diagrams
                 {
                     intersector.AddSet(shape.GetContextMenuItems(this, e.Location));
                 }
+
                 foreach (var connection in GetSelectedConnections())
                     intersector.AddSet(connection.GetContextMenuItems(this, e.Location));
 
@@ -1217,11 +1256,13 @@ namespace NClass.DiagramEditor.Diagrams
                 shape.IsSelected = false;
                 shape.IsActive = false;
             }
+
             foreach (var connection in connections)
             {
                 connection.IsSelected = false;
                 connection.IsActive = false;
             }
+
             ActiveElement = null;
         }
 
@@ -1261,6 +1302,7 @@ namespace NClass.DiagramEditor.Diagrams
                 {
                     Debug.Write($" sort order: {c.SortOrder}");
                 }
+
                 Debug.WriteLine("");
             }
 
@@ -1276,6 +1318,7 @@ namespace NClass.DiagramEditor.Diagrams
                 {
                     Debug.Write($" sort order: {c.SortOrder}");
                 }
+
                 Debug.WriteLine("");
             }
         }
@@ -1336,7 +1379,7 @@ namespace NClass.DiagramEditor.Diagrams
                     firstElement = element;
 
                     // allow to deselect elements when in multiselection
-                    if(multiSelection && isSelected)
+                    if (multiSelection && isSelected)
                     {
                         element.IsSelected = false;
                     }
@@ -1421,6 +1464,7 @@ namespace NClass.DiagramEditor.Diagrams
 
                     diagramElement.MouseUpped(e);
                 }
+
                 state = State.Normal;
             }
             else
@@ -1474,6 +1518,7 @@ namespace NClass.DiagramEditor.Diagrams
                 if (shape.TrySelect(selectionFrame))
                     selectedShapeCount++;
             }
+
             foreach (var connection in connections)
             {
                 if (connection.TrySelect(selectionFrame))
@@ -1516,6 +1561,7 @@ namespace NClass.DiagramEditor.Diagrams
                     }
                 }
             }
+
             foreach (var connection in connections)
             {
                 if (!selectedOnly || connection.IsSelected)
@@ -1566,6 +1612,7 @@ namespace NClass.DiagramEditor.Diagrams
             {
                 container.OnEnterHover += container_OnHover;
             }
+
             shapes.AddFirst(shape);
             RecalculateSize();
         }
@@ -1584,15 +1631,18 @@ namespace NClass.DiagramEditor.Diagrams
                 if (shape != sender)
                     shape.IsActive = false;
             }
+
             foreach (var connection in connections)
             {
                 if (connection != sender)
                     connection.IsActive = false;
             }
+
             ActiveElement = (DiagramElement)sender;
         }
 
-        private bool CorrectChangeToSnapLeft(Shape shape, Shape otherShape, ref Size positionChange, ref Size sizeChange)
+        private bool CorrectChangeToSnapLeft(Shape shape, Shape otherShape, ref Size positionChange,
+            ref Size sizeChange)
         {
             int xDist = otherShape.X - (shape.X + positionChange.Width);
             if (Math.Abs(xDist) <= DiagramConstants.PrecisionSize)
@@ -1687,12 +1737,13 @@ namespace NClass.DiagramEditor.Diagrams
                 {
                     // do not snap container and children when dragging
                     if ((senderShape is ShapeContainer parentShape && parentShape.ChildrenShapes.Contains(otherShape) ||
-                        senderShape.ParentShape == otherShape))
+                         senderShape.ParentShape == otherShape))
                     {
                         continue;
                     }
 
-                    bool snappedX = CorrectChangeToSnapLeft(senderShape, otherShape, ref positionChange, ref sizeChange);
+                    bool snappedX =
+                        CorrectChangeToSnapLeft(senderShape, otherShape, ref positionChange, ref sizeChange);
 
                     if (!snappedX)
                         CorrectChangeToSnapRight(senderShape, otherShape, ref positionChange);
@@ -1719,10 +1770,10 @@ namespace NClass.DiagramEditor.Diagrams
                     if (snappedY)
                         break;
                 }
-
             }
 
-            foreach (var otherShape in shapes.GetUnselectedElements().Where(s => s is ShapeContainer).Cast<ShapeContainer>().OrderByDescending(s => s.SortOrder))
+            foreach (var otherShape in shapes.GetUnselectedElements().Where(s => s is ShapeContainer)
+                         .Cast<ShapeContainer>().OrderByDescending(s => s.SortOrder))
             {
                 if (otherShape.Contains(senderShape.Location))
                 {
@@ -1750,6 +1801,7 @@ namespace NClass.DiagramEditor.Diagrams
                 {
                     shape.Offset(positionChange);
                 }
+
                 foreach (var connection in connections.GetSelectedElements())
                 {
                     connection.Offset(positionChange);
@@ -1792,7 +1844,6 @@ namespace NClass.DiagramEditor.Diagrams
                             CorrectChangeToSnapTop(shape, otherShape, ref positionChange, ref sizeChange);
                     }
                 }
-
             }
 
             positionChange = shape.GetMinimumPositionChange(positionChange);
@@ -1823,6 +1874,7 @@ namespace NClass.DiagramEditor.Diagrams
             {
                 ActiveElement = null;
             }
+
             if (shape.IsSelected)
             {
                 selectedShapeCount--;
@@ -1830,6 +1882,7 @@ namespace NClass.DiagramEditor.Diagrams
                 OnClipboardAvailabilityChanged(EventArgs.Empty);
                 OnStatusChanged(EventArgs.Empty);
             }
+
             shape.Diagram = null;
             shape.Modified -= element_Modified;
             shape.Activating -= element_Activating;
@@ -1841,13 +1894,15 @@ namespace NClass.DiagramEditor.Diagrams
             {
                 container.OnEnterHover -= container_OnHover;
             }
+
             shapes.Remove(shape);
             RecalculateSize();
         }
 
         private void container_OnHover(object sender, EventArgs e)
         {
-            foreach (var container in shapes.GetUnselectedElements().Where(s => s is ShapeContainer && s != sender).Cast<ShapeContainer>())
+            foreach (var container in shapes.GetUnselectedElements().Where(s => s is ShapeContainer && s != sender)
+                         .Cast<ShapeContainer>())
             {
                 container.ExitHover();
             }
@@ -1861,6 +1916,7 @@ namespace NClass.DiagramEditor.Diagrams
                 if (shape.Entity == entity)
                     return shape;
             }
+
             return null;
         }
 
@@ -1871,6 +1927,7 @@ namespace NClass.DiagramEditor.Diagrams
                 if (connection.Relationship == relationship)
                     return connection;
             }
+
             return null;
         }
 
@@ -1905,6 +1962,7 @@ namespace NClass.DiagramEditor.Diagrams
                 OnClipboardAvailabilityChanged(EventArgs.Empty);
                 OnStatusChanged(EventArgs.Empty);
             }
+
             connection.Diagram = null;
             connection.Modified -= element_Modified;
             connection.Activating -= element_Activating;
@@ -1922,6 +1980,7 @@ namespace NClass.DiagramEditor.Diagrams
                 OnClipboardAvailabilityChanged(EventArgs.Empty);
                 OnStatusChanged(EventArgs.Empty);
             }
+
             connection.Diagram = null;
             connection.Modified -= element_Modified;
             connection.Activating -= element_Activating;
@@ -2012,6 +2071,7 @@ namespace NClass.DiagramEditor.Diagrams
                             {
                                 e.BendPoint.X = point.X;
                             }
+
                             if (yDist <= RoutedConnection.PrecisionSize)
                             {
                                 e.BendPoint.Y = point.Y;
@@ -2144,6 +2204,7 @@ namespace NClass.DiagramEditor.Diagrams
         {
             isDirty = false;
         }
+
         public bool IsUntitled => (name == null);
 
         public event EventHandler Closing;
@@ -2199,7 +2260,8 @@ namespace NClass.DiagramEditor.Diagrams
         public bool InsertCommentRelationship(CommentRelationship commentRelationship)
         {
             if (commentRelationship != null && !model.Relationships.Contains(commentRelationship) &&
-                model.Entities.Contains(commentRelationship.First) && model.Entities.Contains(commentRelationship.Second))
+                model.Entities.Contains(commentRelationship.First) &&
+                model.Entities.Contains(commentRelationship.Second))
             {
                 AddCommentRelationship(commentRelationship);
                 return true;
@@ -2224,7 +2286,7 @@ namespace NClass.DiagramEditor.Diagrams
             model.ReinsertEntity(shape.Entity);
             AddShape(shape);
 
-            if(redraw)
+            if (redraw)
                 Redraw();
         }
 
@@ -2247,7 +2309,7 @@ namespace NClass.DiagramEditor.Diagrams
             AddConnection(connection);
             connection.Reattach();
 
-            if(redraw)
+            if (redraw)
                 Redraw();
         }
 
