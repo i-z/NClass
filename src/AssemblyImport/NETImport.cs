@@ -31,6 +31,7 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
+using Newtonsoft.Json;
 
 namespace NClass.AssemblyImport
 {
@@ -89,7 +90,6 @@ namespace NClass.AssemblyImport
 
         #region === Properties
 
-
         #endregion
 
         // ========================================================================
@@ -118,7 +118,7 @@ namespace NClass.AssemblyImport
                 IncludeFilter includeFilter = new IncludeFilter();
                 includeFilter.Rules.AddRange(settings.FilterRules);
                 IFilter filter = includeFilter;
-                if(!settings.UseAsWhiteList)
+                if (!settings.UseAsWhiteList)
                 {
                     filter = new InvertFilter(includeFilter);
                 }
@@ -126,7 +126,17 @@ namespace NClass.AssemblyImport
                 NClassImportFilter nClassImportFilter = new NClassImportFilter(filter);
                 Reflector reflector = new Reflector();
                 filter = nClassImportFilter;
-                NRAssembly nrAssembly = reflector.Reflect(fileName, ref filter, useNewAppDomain);
+                NRAssembly nrAssembly = null;
+
+                if (fileName.EndsWith(".json"))
+                {
+                    nrAssembly = JsonConvert.DeserializeObject<NRAssembly>(File.ReadAllText(fileName));
+                }
+                else
+                {
+                    nrAssembly = reflector.Reflect(fileName, ref filter, useNewAppDomain);
+                }
+
                 nClassImportFilter = (NClassImportFilter)filter;
 
                 AddInterfaces(nrAssembly.Interfaces);
@@ -139,7 +149,7 @@ namespace NClass.AssemblyImport
 
                 AddRelationships(nrAssembly);
 
-                if(nClassImportFilter.UnsafeTypesPresent)
+                if (nClassImportFilter.UnsafeTypesPresent)
                 {
                     throw new UnsafeTypesPresentException(Strings.UnsafeTypesPresent);
                 }
@@ -160,7 +170,8 @@ namespace NClass.AssemblyImport
             }
 
             RelationshipCreator relationshipCreator = new RelationshipCreator();
-            NRRelationships nrRelationships = relationshipCreator.CreateRelationships(nrAssembly, settings.CreateNestings,
+            NRRelationships nrRelationships = relationshipCreator.CreateRelationships(nrAssembly,
+                settings.CreateNestings,
                 settings.CreateGeneralizations,
                 settings.CreateRealizations,
                 settings.CreateAssociations);
@@ -175,21 +186,21 @@ namespace NClass.AssemblyImport
         /// <param name="nrRelationships">The relationships to add.</param>
         private void AddRelationships(NRRelationships nrRelationships)
         {
-            foreach(NRNesting nrNesting in nrRelationships.Nestings)
+            foreach (NRNesting nrNesting in nrRelationships.Nestings)
             {
                 INestable parentType = types[nrNesting.ParentType] as INestable;
                 INestableChild innerType = types[nrNesting.InnerType];
-                if(parentType != null && innerType != null)
+                if (parentType != null && innerType != null)
                 {
-                  diagram.AddNesting(parentType, innerType);
+                    diagram.AddNesting(parentType, innerType);
                 }
             }
 
-            foreach(NRGeneralization nrGeneralization in nrRelationships.Generalizations)
+            foreach (NRGeneralization nrGeneralization in nrRelationships.Generalizations)
             {
                 CompositeType derivedType = types[nrGeneralization.DerivedType] as CompositeType;
                 CompositeType baseType = types[nrGeneralization.BaseType] as CompositeType;
-                if(derivedType != null && baseType != null)
+                if (derivedType != null && baseType != null)
                 {
                     diagram.AddGeneralization(derivedType, baseType);
                 }
@@ -247,6 +258,7 @@ namespace NClass.AssemblyImport
                     top += maxHeight + Margin;
                     maxHeight = 0;
                 }
+
                 shapeIndex++;
             }
         }
@@ -332,7 +344,7 @@ namespace NClass.AssemblyImport
                 delegateType.Name = nrDelegate.Name;
                 delegateType.AccessModifier = nrDelegate.AccessModifier.ToNClass();
                 delegateType.ReturnType = nrDelegate.ReturnType.Name;
-                foreach(NRParameter nrParameter in nrDelegate.Parameters)
+                foreach (NRParameter nrParameter in nrDelegate.Parameters)
                 {
                     delegateType.AddParameter(nrParameter.Declaration());
                 }

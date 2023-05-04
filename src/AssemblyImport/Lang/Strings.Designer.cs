@@ -22,7 +22,7 @@ namespace NClass.AssemblyImport.Lang {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal partial class Strings {
+    internal class Strings {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
@@ -198,7 +198,7 @@ namespace NClass.AssemblyImport.Lang {
         /// <summary>
         ///   Looks up a localized string similar to Error while importing!
         ///
-        ///Note: Assemblys which are created with a fuscator might fail to import..
+        ///Note: Assemblies which are created with a obfuscator might fail to import..
         /// </summary>
         internal static string Error_GeneralException {
             get {
@@ -333,7 +333,7 @@ namespace NClass.AssemblyImport.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Assemblies (*.exe, *.dll)|*.exe;*.dll.
+        ///   Looks up a localized string similar to Assemblies (*.exe, *.dll, *.json)|*.exe;*.dll;*.json.
         /// </summary>
         internal static string OpenFileDialog_Filter {
             get {
@@ -477,7 +477,7 @@ namespace NClass.AssemblyImport.Lang {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Import only the folowing.
+        ///   Looks up a localized string similar to Import only the following.
         /// </summary>
         internal static string Settings_Filter_WhiteList {
             get {

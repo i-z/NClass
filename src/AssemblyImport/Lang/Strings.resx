@@ -265,7 +265,7 @@
     <value>Import settings</value>
   </data>
   <data name="Settings_Filter_WhiteList" xml:space="preserve">
-    <value>Import only the folowing</value>
+    <value>Import only the following</value>
   </data>
   <data name="Element_Constant" xml:space="preserve">
     <value>Constant</value>
@@ -277,12 +277,12 @@
     <value>default</value>
   </data>
   <data name="OpenFileDialog_Filter" xml:space="preserve">
-    <value>Assemblies (*.exe, *.dll)|*.exe;*.dll</value>
+    <value>Assemblies (*.exe, *.dll, *.json)|*.exe;*.dll;*.json</value>
   </data>
   <data name="Error_GeneralException" xml:space="preserve">
     <value>Error while importing!
 
-Note: Assemblys which are created with a fuscator might fail to import.</value>
+Note: Assemblies which are created with a obfuscator might fail to import.</value>
   </data>
   <data name="UnsafeTypesPresent" xml:space="preserve">
     <value>Some unsafe types exist at the imported assembly. Every element using such a type isn't imported.</value>
