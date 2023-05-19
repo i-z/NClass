@@ -24,6 +24,6 @@ namespace NClass.DiagramEditor.Diagrams
         public const int MaximalPrecisionDistance = 500;
         public const float DashSize = 3;
         public static readonly Size MinSize = new Size(3000, 2000);
-        public static readonly Pen SelectionPen = new Pen (Color.Black) { DashPattern = new[] { DashSize, DashSize } };
+        public static readonly Pen SelectionPen = new Pen (Color.Red, 2) { DashPattern = new[] { DashSize, DashSize } };
     }
 }
