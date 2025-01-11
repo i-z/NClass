@@ -1939,8 +1939,10 @@ namespace NClass.DiagramEditor
             {
                 using (Stream stream = new FileStream(path, FileMode.Open))
                 {
+#pragma warning disable SYSLIB0011
                     BinaryFormatter formatter = new BinaryFormatter();
                     Style result = (Style)formatter.Deserialize(stream);
+#pragma warning restore SYSLIB0011
 
                     if (addToList && result != null)
                         AddToList(result, path);
@@ -1965,8 +1967,10 @@ namespace NClass.DiagramEditor
             {
                 using (Stream stream = new FileStream(path, FileMode.Create))
                 {
+#pragma warning disable SYSLIB0011
                     BinaryFormatter formatter = new BinaryFormatter();
                     formatter.Serialize(stream, this);
+#pragma warning restore SYSLIB0011
                 }
 
                 if (addToList)
