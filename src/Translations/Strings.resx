@@ -1276,4 +1276,7 @@ Do you still want to continue?</value>
   <data name="UndoRedoOpenFile" xml:space="preserve">
     <value>Open File</value>
   </data>
+  <data name="AddNewAbstraction" xml:space="preserve">
+    <value>Add New Abstraction</value>
+  </data>
 </root>
