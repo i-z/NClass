@@ -103,7 +103,7 @@ namespace NClass.AssemblyImport
         /// </summary>
         /// <param name="fileName">The file name and path of the assembly to import.</param>
         /// <returns><c>True</c>, if the import was successful.</returns>
-        public bool ImportAssembly(string fileName, bool useNewAppDomain = true)
+        public bool ImportAssembly(string fileName)
         {
             if (string.IsNullOrEmpty(fileName))
             {
@@ -134,7 +134,7 @@ namespace NClass.AssemblyImport
                 }
                 else
                 {
-                    nrAssembly = reflector.Reflect(fileName, ref filter, useNewAppDomain);
+                    nrAssembly = reflector.Reflect(fileName, ref filter);
                 }
 
                 nClassImportFilter = (NClassImportFilter)filter;

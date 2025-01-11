@@ -102,6 +102,5 @@
     <PackageReference Include="Octokit" Version="0.32.0" />
   </ItemGroup>
   <PropertyGroup>
-    <PostBuildEvent>copy /Y ..\..\..\..\libs\NReflect\NReflect\bin\$(Configuration)\* .\Plugins\</PostBuildEvent>
   </PropertyGroup>
 </Project>
