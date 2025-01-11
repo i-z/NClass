@@ -44,7 +44,6 @@ namespace NClass.DiagramEditor
         public event EventHandler ZoomChanged;
         public event EventHandler DocumentRedrawed;
         public event EventHandler VisibleAreaChanged;
-        public event EventHandler MouseHWheel;
 
         //Mouse location in document coordinates from last OnMouseMove event
         PointF mouseDocPrevLocation = PointF.Empty;
@@ -560,12 +559,10 @@ namespace NClass.DiagramEditor
             UpdateDocumentOffset();
         }
 
-        protected virtual void OnMouseHWheel(EventArgs e) //TODO: MouseEventArgs kellene
+        protected virtual void OnMouseHWheel(MouseEventArgs e)
         {
+            ScrollHorizontally(-e.Delta);
             UpdateDocumentOffset();
-            Invalidate(); //TODO: SetDisplayRectLocation() kellene
-            if (MouseHWheel != null)
-                MouseHWheel(this, e);
         }
 
         private PointF GetDocumentCoordinates(Point location)
@@ -668,7 +665,10 @@ namespace NClass.DiagramEditor
 
             if (m.Msg == 0x020E) // WM_MOUSEHWHEEL
             {
-                OnMouseHWheel(EventArgs.Empty);
+                int zDelta = (short) (((long)m.WParam >> 0x10) & 0xffff);
+                m.Result = new IntPtr((ushort)(((long)m.WParam >> 0x10) & 0xffff) / zDelta);
+                var mouseEventArgs = new MouseEventArgs(MouseButtons.None, 0, 0, 0, zDelta);
+                OnMouseHWheel(mouseEventArgs);
             }
         }
 

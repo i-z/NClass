@@ -23,29 +23,8 @@ namespace NClass.DiagramEditor.ClassDiagram.Editors
 {
     public class BorderedTextBox : UserControl
     {
-        private class TabTextBox : TextBox
-        {
-            protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
-            {
-                if (keyData == Keys.Enter && AcceptsReturn)
-                {
-                    OnKeyDown(new KeyEventArgs(keyData));
-                    return true;
-                }
-                else if (keyData == Keys.Tab && AcceptsTab)
-                {
-                    OnKeyDown(new KeyEventArgs(keyData));
-                    return true;
-                }
-                else
-                {
-                    return base.ProcessCmdKey(ref msg, keyData);
-                }
-            }
-        }
-
-        TabTextBox textBox = new TabTextBox();
-        Panel panel = new Panel();
+        readonly TabTextBox textBox = new TabTextBox();
+        readonly Panel panel = new Panel();
 
         public BorderedTextBox()
         {
@@ -53,6 +32,7 @@ namespace NClass.DiagramEditor.ClassDiagram.Editors
             textBox.BorderStyle = BorderStyle.FixedSingle;
             textBox.Location = new Point(-1, -1);
             textBox.AcceptsReturn = true;
+            textBox.AllowSelectAll = true;
             panel.Dock = DockStyle.Fill;
             panel.Size = textBox.Size - new Size(2, 0);
             panel.Controls.Add(textBox);
@@ -71,50 +51,53 @@ namespace NClass.DiagramEditor.ClassDiagram.Editors
         [DefaultValue(typeof(Color), "ControlDark")]
         public Color BorderColor
         {
-            get { return base.BackColor; }
-            set { base.BackColor = value; }
+            get => base.BackColor;
+            set => base.BackColor = value;
         }
 
         [DefaultValue(typeof(Color), "Window")]
         public new Color BackColor
         {
-            get { return textBox.BackColor; }
-            set { textBox.BackColor = value; }
+            get => textBox.BackColor;
+            set => textBox.BackColor = value;
         }
 
         public bool ReadOnly
         {
-            get { return textBox.ReadOnly; }
-            set { textBox.ReadOnly = value; }
+            get => textBox.ReadOnly;
+            set => textBox.ReadOnly = value;
         }
 
         public override string Text
         {
-            get { return textBox.Text; }
-            set { textBox.Text = value; }
+            get => textBox.Text;
+            set => textBox.Text = value;
         }
 
         [DefaultValue(true)]
         public bool AcceptsReturn
         {
-            get { return textBox.AcceptsReturn; }
-            set { textBox.AcceptsReturn = value; }
+            get => textBox.AcceptsReturn;
+            set => textBox.AcceptsReturn = value;
         }
 
         [DefaultValue(false)]
         public bool AcceptsTab
         {
-            get { return textBox.AcceptsTab; }
-            set { textBox.AcceptsTab = value; }
+            get => textBox.AcceptsTab;
+            set => textBox.AcceptsTab = value;
         }
+
+        [DefaultValue(true)]
+        public bool AllowSelectAll { get; set; }
 
         /// <exception cref="ArgumentOutOfRangeException">
         /// The assigned value is less than zero.
         /// </exception>
         public int SelectionStart
         {
-            get { return textBox.SelectionStart; }
-            set { textBox.SelectionStart = value; }
+            get => textBox.SelectionStart;
+            set => textBox.SelectionStart = value;
         }
 
         private void textBox_KeyDown(object sender, KeyEventArgs e)

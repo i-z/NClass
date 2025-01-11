@@ -1,0 +1,148 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <OutputType>Library</OutputType>
+    <RootNamespace>NClass.DiagramEditor</RootNamespace>
+    <AssemblyName>NClass.DiagramEditor</AssemblyName>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <UseWindowsForms>true</UseWindowsForms>
+    <ImportWindowsDesktopTargets>true</ImportWindowsDesktopTargets>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+<<<<<<< HEAD
+    <Compile Update="ClassDiagram\Editors\PackageEditor.cs">
+=======
+    <Compile Include="AbsoluteMouseEventArgs.cs" />
+    <Compile Include="ClassDiagram\Editors\TabTextBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Commands\AddConnectionCommand.cs" />
+    <Compile Include="Commands\AddDelegateParameterCommand.cs" />
+    <Compile Include="Commands\AddEnumMemberCommand.cs" />
+    <Compile Include="Commands\AddNewMemberCommand.cs" />
+    <Compile Include="Commands\DeleteDelegateParameter.cs" />
+    <Compile Include="Commands\DeleteEnumMemberCommand.cs" />
+    <Compile Include="Commands\DeleteFromEnumTypeCommand.cs" />
+    <Compile Include="Commands\InsertMemberCommand.cs" />
+    <Compile Include="Commands\AddShapeCommand.cs" />
+    <Compile Include="Commands\ChangePropertyCommand.cs" />
+    <Compile Include="Commands\MoveElementsCommand.cs" />
+    <Compile Include="Commands\PasteCommand.cs" />
+    <Compile Include="Commands\DeleteMemberCommand.cs" />
+    <Compile Include="Commands\DeleteElementsCommand.cs" />
+    <Compile Include="Commands\RenameDelegateParameterCommand.cs" />
+    <Compile Include="Commands\RenameEnumMemberCommand.cs" />
+    <Compile Include="Commands\RenameMemberCommand.cs" />
+    <Compile Include="Diagrams\PasteResult.cs" />
+    <Compile Include="RoundedRectangle.cs" />
+    <Compile Include="ClassDiagram\ClassDiagram.cs" />
+    <Compile Include="ClassDiagram\ContextMenus\PackageContextMenu.cs" />
+    <Compile Include="ClassDiagram\Editors\PackageEditor.cs">
+>>>>>>> 958a145dea1dae0b571b8c6998f980754ddc76de
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="ClassDiagram\Editors\FloatingEditor.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="Diagrams\Editors\CommentEditor.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="Diagrams\Editors\DesignerHelperWindow.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="Diagrams\Editors\ShapeNameEditor.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="ClassDiagram\Editors\BorderedTextBox.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="ClassDiagram\Editors\ParameterEditor.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="ClassDiagram\Editors\EnumValueEditor.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="ClassDiagram\Editors\TypeEditor.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="Diagrams\Editors\EditorWindow.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="PopupWindow.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="ClassDiagram\Editors\CompositeTypeEditor.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="ClassDiagram\Editors\DelegateEditor.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="ClassDiagram\Editors\EnumEditor.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="ClassDiagram\Editors\ItemEditor.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="ClassDiagram\Editors\MemberEditor.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="Canvas.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CodeGenerator\CodeGenerator.csproj" />
+    <ProjectReference Include="..\Core\Core.csproj" />
+    <ProjectReference Include="..\Translations\Translations.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.2.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 2.0 %28x86%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.0 %28x86%29</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\usecase_diagram.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Remove="ClassDiagram\Editors\DesignerHelperWindow.cs" />
+    <Compile Remove="ClassDiagram\Editors\DesignerHelperWindow.Designer.cs" />
+  </ItemGroup>
+</Project>

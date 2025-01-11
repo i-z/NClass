@@ -268,7 +268,11 @@ namespace NClass.DiagramEditor.Diagrams
 
         public Point Offset
         {
+<<<<<<< HEAD
+            get { return offset; }
+=======
             get => offset;
+>>>>>>> 958a145dea1dae0b571b8c6998f980754ddc76de
             set
             {
                 if (value.X < 0) value.X = 0;
@@ -284,7 +288,11 @@ namespace NClass.DiagramEditor.Diagrams
 
         public Size Size
         {
+<<<<<<< HEAD
+            get { return size; }
+=======
             get => size;
+>>>>>>> 958a145dea1dae0b571b8c6998f980754ddc76de
             protected set
             {
                 if (value.Width < DiagramConstants.MinSize.Width)
@@ -302,7 +310,11 @@ namespace NClass.DiagramEditor.Diagrams
 
         public float Zoom
         {
+<<<<<<< HEAD
+            get { return zoom; }
+=======
             get => zoom;
+>>>>>>> 958a145dea1dae0b571b8c6998f980754ddc76de
             set
             {
                 if (value < Canvas.MinZoom) value = Canvas.MinZoom;
@@ -320,7 +332,11 @@ namespace NClass.DiagramEditor.Diagrams
 
         public bool RedrawSuspended
         {
+<<<<<<< HEAD
+            get { return redrawSuspended; }
+=======
             get => redrawSuspended;
+>>>>>>> 958a145dea1dae0b571b8c6998f980754ddc76de
             set
             {
                 if (redrawSuspended != value)
@@ -1380,10 +1396,20 @@ namespace NClass.DiagramEditor.Diagrams
                 element.MousePressed(e);
                 if (e.Handled && clickedElement == null)
                 {
+<<<<<<< HEAD
+                    firstElement = element;
+
+                    // allow to deselect elements when in multiselection
+                    if (multiSelection && isSelected)
+                    {
+                        element.IsSelected = false;
+                    }
+=======
                     clickedElement = element;
                     wasClickedElementSelected = isSelected;
                     if (isSelected)
                         hasMultiple = true;
+>>>>>>> 958a145dea1dae0b571b8c6998f980754ddc76de
                 }
             }
 
