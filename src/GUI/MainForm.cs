@@ -129,6 +129,15 @@ namespace NClass.GUI
                 string pluginsPath = Path.Combine(Application.StartupPath, "Plugins");
                 if (!Directory.Exists(pluginsPath))
                     return;
+                
+                AppDomain.CurrentDomain.AssemblyResolve += delegate(object sender, ResolveEventArgs args)
+                {
+                    string assemblyName = new AssemblyName(args.Name).Name + ".dll";
+                    string assemblyPath = Path.Combine(pluginsPath, assemblyName);
+                    if (File.Exists(assemblyPath))
+                        return Assembly.LoadFrom(assemblyPath);
+                    return null;
+                };
 
                 DirectoryInfo directory = new DirectoryInfo(pluginsPath);
 
