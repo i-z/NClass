@@ -120,7 +120,7 @@ namespace NClass.CSharp
         static readonly string[] typeKeywords =
         {
             "bool", "byte", "char", "decimal", "double", "float", "int", "long",
-            "object", "sbyte", "short", "string", "uint", "ulong", "ushort", "void"
+            /*"object",*/ "sbyte", "short", "string", "uint", "ulong", "ushort", "void"
         };
 
         static readonly Dictionary<AccessModifier, string> validAccessModifiers;

@@ -130,7 +130,7 @@ namespace NClass.AssemblyImport
 
                 if (fileName.EndsWith(".json"))
                 {
-                    nrAssembly = JsonConvert.DeserializeObject<NRAssembly>(File.ReadAllText(fileName));
+                    //nrAssembly = JsonConvert.DeserializeObject<NRAssembly>(File.ReadAllText(fileName));
                 }
                 else
                 {
