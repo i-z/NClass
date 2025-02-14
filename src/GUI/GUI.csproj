@@ -99,6 +99,7 @@
   <ItemGroup>
     <PackageReference Include="CommonMark.NET" Version="0.15.1" />
     <PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
     <PackageReference Include="Octokit" Version="0.32.0" />
     <PackageReference Include="System.Reflection.MetadataLoadContext" Version="9.0.1" />
   </ItemGroup>

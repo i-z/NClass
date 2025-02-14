@@ -130,11 +130,11 @@ namespace NClass.AssemblyImport
 
                 if (fileName.EndsWith(".json"))
                 {
-                    //nrAssembly = JsonConvert.DeserializeObject<NRAssembly>(File.ReadAllText(fileName));
+                    nrAssembly = JsonConvert.DeserializeObject<NRAssembly>(File.ReadAllText(fileName));
                 }
                 else
                 {
-                    nrAssembly = reflector.Reflect(fileName, ref filter);
+                    nrAssembly = reflector.Reflect(fileName, ref filter, out _);
                 }
 
                 nClassImportFilter = (NClassImportFilter)filter;
