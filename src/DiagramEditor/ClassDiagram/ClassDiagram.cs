@@ -296,6 +296,10 @@ namespace NClass.DiagramEditor.ClassDiagram
                     AddStructure();
                     break;
 
+                case EntityType.RedBox:
+                    AddRedBox();
+                    break;
+
                 default:
                     return null;
             }
@@ -334,6 +338,10 @@ namespace NClass.DiagramEditor.ClassDiagram
 
                 case EntityType.Structure:
                     AddStructure(e.Entity as StructureType);
+                    break;
+
+                    case EntityType.RedBox:
+                    AddRedBox(e.Entity as RedBox);
                     break;
             }
 
@@ -447,6 +455,7 @@ namespace NClass.DiagramEditor.ClassDiagram
                     shapeOutline = PackageShape.GetOutline(Style.CurrentStyle);
                     break;
                 case EntityType.Comment:
+                case EntityType.RedBox:
                     shapeOutline = CommentShape.GetOutline(Style.CurrentStyle);
                     break;
             }

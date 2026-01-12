@@ -96,6 +96,7 @@ namespace NClass.DiagramEditor
             this.toolDelete = new ToolStripButton(Strings.Delete, Resources.Delete, (o, e) => diagram?.DeleteSelectedElements());
             this.toolNewComment = new ToolStripButton(Strings.AddNewComment, Resources.Comment, (o, e) => diagram?.CreateShape(EntityType.Comment)) { DisplayStyle = ToolStripItemDisplayStyle.Image };
             this.toolNewCommentRelationship = new ToolStripButton(Strings.AddNewCommentRelationship, Resources.CommentRel, (o, e) => diagram?.CreateConnection(RelationshipType.Comment)) { DisplayStyle = ToolStripItemDisplayStyle.Image };
+            this.toolRedBox = new ToolStripButton(Strings.RedBox, Resources.Comment, (o, e) => diagram?.CreateShape(EntityType.RedBox)) { DisplayStyle = ToolStripItemDisplayStyle.Image };
             #endregion
         }
 
@@ -130,6 +131,7 @@ namespace NClass.DiagramEditor
         protected ToolStripButton toolNewComment;
         protected ToolStripButton toolNewCommentRelationship;
         protected ToolStripButton toolDelete;
+        protected ToolStripButton toolRedBox;
 #endregion
     }
 }

@@ -150,6 +150,9 @@
   <data name="Association" xml:space="preserve">
     <value>Assoziation</value>
   </data>
+  <data name="ErrorCannotAddSameInterface" xml:space="preserve">
+    <value>Es ist nicht möglich die selbe Schnittstelle zu verwenden.</value>
+  </data>
   <data name="ReturnType" xml:space="preserve">
     <value>Rückgabewert:</value>
     <comment>The return type of a delegate</comment>
@@ -263,8 +266,8 @@
   <data name="SendEmail" xml:space="preserve">
     <value>Dem Autor eine E-Mail schicken</value>
   </data>
-  <data name="Author" xml:space="preserve">
-    <value>Georgi Baychev</value>
+  <data name="AuthorRetired" xml:space="preserve">
+    <value>Balazs Tihanyi</value>
   </data>
   <data name="ItemsSelected" xml:space="preserve">
     <value>{0} ausgewählte Items.</value>
@@ -397,6 +400,9 @@
   <data name="ImplementExplicitly" xml:space="preserve">
     <value>Explizite Implementierung</value>
   </data>
+  <data name="DeleteElementsConfirmation" xml:space="preserve">
+    <value>Möchten Sie wirklich die selektierten Elemente löschen?</value>
+  </data>
   <data name="ErrorExplicitImplementationAccess" xml:space="preserve">
     <value>In einer expliziten Implementierung können keine Zugriffsrechte vergeben werden.</value>
   </data>
@@ -435,9 +441,6 @@
   </data>
   <data name="ErrorCyclicNesting" xml:space="preserve">
     <value>Zyklische Verschachtelungen sind nicht möglich.</value>
-  </data>
-  <data name="ErrorNestingNotSupported" xml:space="preserve">
-    <value>Basistyp unterstützt keine Verschachtelung</value>
   </data>
   <data name="ErrorMemberTypeDoesNotExist" xml:space="preserve">
     <value>Folgende Typen exsistieren nicht {0}</value>
@@ -1119,29 +1122,23 @@
     <value>Einfügen</value>
     <comment>Clipboard Paste</comment>
   </data>
-  <data name="ErrorCannotAddSameInterface" xml:space="preserve">
-    <value>Es ist nicht möglich die selbe Schnittstelle zu verwenden.</value>
-  </data>
-  <data name="MenuAutoSize" xml:space="preserve">
-    <value>Automatische G&amp;rößenanpassung</value>
+  <data name="MenuOpenFile" xml:space="preserve">
+    <value>&amp;Datei...</value>
   </data>
   <data name="UseClearTypeForImages" xml:space="preserve">
     <value>In exportierten Bildern (keine Transparenz möglich)</value>
   </data>
-  <data name="ButtonClear" xml:space="preserve">
-    <value>Zurücksetzen</value>
+  <data name="MenuReverse" xml:space="preserve">
+    <value>&amp;Umkehren</value>
   </data>
-  <data name="DeleteElementsConfirmation" xml:space="preserve">
-    <value>Möchten Sie wirklich die selektierten Elemente löschen?</value>
+  <data name="MenuAutoSize" xml:space="preserve">
+    <value>Automatische G&amp;rößenanpassung</value>
   </data>
   <data name="DeleteMemberConfirmation" xml:space="preserve">
     <value>Möchten Sie wirklich die selektierten Member löschen?</value>
   </data>
-  <data name="MenuOpenFile" xml:space="preserve">
-    <value>&amp;Datei...</value>
-  </data>
-  <data name="MenuReverse" xml:space="preserve">
-    <value>&amp;Umkehren</value>
+  <data name="ButtonClear" xml:space="preserve">
+    <value>Zurücksetzen</value>
   </data>
   <data name="CodeGenerationOverwriteConfirmation" xml:space="preserve">
     <value>Das Ausgabeverzeichnis ist nicht leer, die alten Dateien werden überschrieben. Möchten Sie fortfahren?</value>
@@ -1161,7 +1158,13 @@
   <data name="MenuUseCaseDiagram" xml:space="preserve">
     <value>Use Case Diagram</value>
   </data>
-  <data name="AuthorRetired" xml:space="preserve">
-    <value>Balazs Tihanyi</value>
+  <data name="Author" xml:space="preserve">
+    <value>Georgi Baychev</value>
+  </data>
+  <data name="ErrorNestingNotSupported" xml:space="preserve">
+    <value>Basistyp unterstützt keine Verschachtelung</value>
+  </data>
+  <data name="RedBox" xml:space="preserve">
+    <value />
   </data>
 </root>

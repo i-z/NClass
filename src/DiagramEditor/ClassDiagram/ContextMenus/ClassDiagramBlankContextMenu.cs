@@ -47,6 +47,7 @@ namespace NClass.DiagramEditor.ClassDiagram.ContextMenus
         ToolStripMenuItem mnuNewDependency;
         ToolStripMenuItem mnuNewNesting;
         ToolStripMenuItem mnuNewCommentRelationship;
+        ToolStripMenuItem menuRedBox;
 
         ToolStripMenuItem mnuMembersFormat;
         ToolStripMenuItem mnuShowType;
@@ -112,6 +113,7 @@ namespace NClass.DiagramEditor.ClassDiagram.ContextMenus
             mnuNewDependency = new ToolStripMenuItem(Strings.MenuDependency, Resources.Dependency, mnuNewDependency_Click);
             mnuNewNesting = new ToolStripMenuItem(Strings.MenuNesting, Resources.Nesting, mnuNewNesting_Click);
             mnuNewCommentRelationship = new ToolStripMenuItem(Strings.MenuCommentRelationship, Resources.CommentRel, mnuNewCommentRelationship_Click);
+            menuRedBox = new ToolStripMenuItem(Strings.RedBox, Resources.Comment, (s, e) => Diagram?.CreateShape(EntityType.RedBox));
 
             mnuMembersFormat = new ToolStripMenuItem(Strings.MenuMembersFormat, null);
             mnuShowType = new ToolStripMenuItem(Strings.MenuType, null);

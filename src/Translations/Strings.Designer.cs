@@ -3008,6 +3008,15 @@ namespace NClass.Translations {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to RedBox.
+        /// </summary>
+        public static string RedBox {
+            get {
+                return ResourceManager.GetString("RedBox", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Remember open projects on close.
         /// </summary>
         public static string RememberOpenProjects {

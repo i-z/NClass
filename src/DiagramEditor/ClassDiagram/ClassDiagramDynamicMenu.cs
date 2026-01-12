@@ -209,6 +209,7 @@ namespace NClass.DiagramEditor.ClassDiagram
             this.elementsToolStrip.Items.Add(this.toolNewDependency);
             this.elementsToolStrip.Items.Add(this.toolNewNesting);
             this.elementsToolStrip.Items.Add(this.toolNewCommentRelationship);
+            this.elementsToolStrip.Items.Add(this.toolRedBox);
         }
 
         #region Event handlers

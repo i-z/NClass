@@ -2267,9 +2267,19 @@ namespace NClass.DiagramEditor.Diagrams
             model.AddComment();
         }
 
+        public void AddRedBox()
+        {
+            model.AddRedBox();
+        }
+
         protected void AddComment(Comment comment)
         {
             AddShape(new CommentShape(comment));
+        }
+
+        protected void AddRedBox(RedBox redBox)
+        {
+            AddShape(new RedBoxShape(redBox));
         }
 
         public bool InsertComment(Comment comment)

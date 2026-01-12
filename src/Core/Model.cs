@@ -134,6 +134,13 @@ namespace NClass.Core
             return comment;
         }
 
+        public IEntity AddRedBox()
+        {
+            RedBox redBox = new RedBox();
+            AddEntity(redBox);
+            return redBox;
+        }
+
         /// <exception cref="ArgumentNullException">
         /// <paramref name="comment"/> or <paramref name="entity"/> is null.
         /// </exception>

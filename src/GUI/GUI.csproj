@@ -47,6 +47,11 @@
     <Compile Update="UndoRedoListView.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Update="WindowSettings.Designer.cs">
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>WindowSettings.settings</DependentUpon>
+    </Compile>
     <Compile Update="ZoomingToolStrip.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -102,6 +107,12 @@
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
     <PackageReference Include="Octokit" Version="0.32.0" />
     <PackageReference Include="System.Reflection.MetadataLoadContext" Version="9.0.1" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Update="WindowSettings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>WindowSettings.Designer.cs</LastGenOutput>
+    </None>
   </ItemGroup>
   <PropertyGroup>
   </PropertyGroup>

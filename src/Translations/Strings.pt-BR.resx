@@ -266,9 +266,8 @@
   <data name="SendEmail" xml:space="preserve">
     <value>Enviar email para o autor do programa.</value>
   </data>
-  <data name="Author" xml:space="preserve">
+  <data name="AuthorRetired" xml:space="preserve">
     <value>Balazs Tihanyi</value>
-    <comment>#</comment>
   </data>
   <data name="ItemsSelected" xml:space="preserve">
     <value>{0} itens selecionados.</value>
@@ -440,9 +439,6 @@ Não é possível definir o acesso modificador explícito em execução.</value>
   </data>
   <data name="ErrorCyclicNesting" xml:space="preserve">
     <value>Indicação de relacionamento cíclico</value>
-  </data>
-  <data name="ErrorNestingNotSupported" xml:space="preserve">
-    <value>Parent type does not support nesting.</value>
   </data>
   <data name="ErrorMemberTypeDoesNotExist" xml:space="preserve">
     <value>{0} tipo de membro não existe.</value>
@@ -1139,7 +1135,14 @@ Do you want to download the framework now?</value>
   <data name="MenuUseCaseDiagram" xml:space="preserve">
     <value>Use Case Diagram</value>
   </data>
-  <data name="AuthorRetired" xml:space="preserve">
+  <data name="Author" xml:space="preserve">
     <value>Balazs Tihanyi</value>
+    <comment>#</comment>
+  </data>
+  <data name="ErrorNestingNotSupported" xml:space="preserve">
+    <value>Parent type does not support nesting.</value>
+  </data>
+  <data name="RedBox" xml:space="preserve">
+    <value />
   </data>
 </root>

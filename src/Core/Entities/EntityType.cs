@@ -28,6 +28,8 @@ namespace NClass.Core
 
         Actor,
         UseCase,
-        SystemBoundary
+        SystemBoundary,
+
+        RedBox
     }
 }

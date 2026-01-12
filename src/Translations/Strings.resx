@@ -1279,4 +1279,7 @@ Do you still want to continue?</value>
   <data name="AddNewAbstraction" xml:space="preserve">
     <value>Add New Abstraction</value>
   </data>
+  <data name="RedBox" xml:space="preserve">
+    <value>RedBox</value>
+  </data>
 </root>
